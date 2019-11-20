@@ -5,6 +5,9 @@ from subprocess import Popen
 module_logger = logger.create_logger('$cript_k!ddie_CTF_Dump_Collector')
 import time
 import argparse
+import os
+import signal
+
 module_description = '''
 $cript_k!ddie N/W Sniffer
 
@@ -41,7 +44,8 @@ class CTF_TCP_DUMP(threading.Thread):
             # module_logger.info('Process Not Dead')
             if self.kill:
                 module_logger.info('Killing Subprocesss %d',self.tick_num)
-                self.subprocess.kill()
+                pid = self.subprocess.pid
+                os.kill(pid, signal.SIGINT) 
                 break
 
 
