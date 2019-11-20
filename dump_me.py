@@ -14,12 +14,13 @@ N/W Sniffer that operates using tcpdump and Python Threads
 '''
 arguement_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,description=module_description)
 arguement_parser.add_argument('interface',help='Name of Interface. Eg. eth0 / lo')
-arguement_parser.add_argument('-p','--port',nargs='+')
+arguement_parser.add_argument('-p','--port',help="Ports You want to sniff" nargs='+')
 
 
-PROCESS_KILL_TIME = 2*60*60
-TICK_DURATION = 3*60
-
+# PROCESS_KILL_TIME = 2*60*60
+# TICK_DURATION = 3*60
+PROCESS_KILL_TIME = 6*60
+TICK_DURATION = 1*60
 
 class CTF_TCP_DUMP(threading.Thread):
     def __init__(self, tick_num,port,interface='lo',output_folder='Output/'): 
